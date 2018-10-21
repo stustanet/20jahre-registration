@@ -1,0 +1,36 @@
+{{define "base"}}<!DOCTYPE html>
+<html lang="de-DE">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>20 Jahre StuStaNet e. V.</title>
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+    <link href='https://20.jahre.stusta.net/styles.css' rel='stylesheet' type="text/css" />
+    <link rel="icon" type="image/png" href="https://20.jahre.stusta.net/favicon16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="https://20.jahre.stusta.net/favicon32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://20.jahre.stusta.net/favicon64.png" sizes="64x64" />
+    <link rel="icon" type="image/png" href="https://20.jahre.stusta.net/favicon128.png" sizes="128x128" />
+    <link rel="canonical" href="https://20.jahre.stusta.net/">
+  </head>
+  <body class="">
+    <header id="site-header">
+      <div class="container">
+        <h1>20 Jahre <img alt="StuStaNet" src="https://20.jahre.stusta.net/ssn_white.svg" style="height: 1.4em; margin-bottom: -0.4em" /> e. V.</h1>
+      </div>
+    </header>
+    <main role="main">
+      <article>
+{{template "content" .}}
+      </article>
+    </main>
+    <footer>
+      <div class="imprint">
+        <a href="https://stustanet.de/impressum">Impressum</a>
+      </div>
+    </footer>
+    {{template "script" .}}
+  </body>
+</html>{{end}}

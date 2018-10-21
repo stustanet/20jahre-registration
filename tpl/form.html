@@ -1,0 +1,80 @@
+{{define "content"}}
+<h2>Jubiläumsfeier am Samstag 15.09.2018</h2>
+
+<p id="intro">Der StuStaNet e. V. feiert 20-jähriges Bestehen und lädt dazu herzlich zur Jubiläumsfeier am 15. September 2018 ein. Für die Essensplanung bitten wir um Anmeldung im nachfolgenden Formular:</p>
+
+<form action="/" method="post">
+    <fieldset>
+        <legend>1. Teilnahme</legend>
+
+        <label class="row" for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Maxine Musterfrau" required minlength="6" maxlength="60" />
+        <br />
+
+        <label class="row" for="attend">Teilnahme</label>
+        <div class="radio_group">
+            <label class="radio">
+                <input type="radio" id="attend1" name="attend" value="1" required />
+                Ich nehme an der Feier teil
+            </label>
+            <br />
+            <label class="radio">
+                <input type="radio" id="attend0" name="attend" value="0" required />
+                Ich nehme NICHT teil
+            </label>
+        </div>
+    </fieldset>
+
+    <fieldset id="persons">
+        <legend>2. Personen und Essen</legend>
+        <div class="note">Partner und Kinder sind selbstverständlich auch willkommen.</div>
+
+        <label class="row" for="adults">Erwachsene</label>
+                <input type="number" id="adults" name="adults" value="1" min="1" max="5" />, davon
+                <input type="number" id="adults_veg" name="adults_veg" value="0" min="0" max="5" /> vegetarisch.
+                <br />
+
+        <label class="row" for="children">Kinder</label>
+                <input type="number" id="children" name="children" value="0" min="0" max="5" />, davon
+                <input type="number" id="children_veg" name="children_veg" value="0" min="0" max="5" /> vegetarisch.
+        <br />
+    </fieldset>
+
+    <fieldset>
+        <legend>3. Sonstiges</legend>
+        <div class="note">Falls du uns noch etwas mitteilen möchtest, so kannst du dies hier tun:</div>
+
+        <label class="row" for="comment">Kommentar</label>
+        <textarea id="comment" name="comment" maxlength="500"></textarea>
+    </fieldset>
+
+    <input type="hidden" name="token" value="{{.Token}}" />
+    <input type="submit" value="Abschicken" />
+</form>
+
+<h3>Datenerfassung</h3>
+<p>Die abgesendeten Daten werden zum Zweck der Planung der Jubiläumsfeier durch den StuStaNet e. V. erfasst und gespeichert. Ausschließlich der <a href="https://stustanet.de/de/impressum/#stustanet-e-v">Vorstand des StuStaNet e. V.</a> hat Zugriff auf die gespeicherten Daten. Spätestens am 16.09.2018 erfolgt die vollständige Löschung der gespeicherten Daten.</p>
+{{end}}
+
+
+{{define "script"}}
+<script>
+let persons = document.getElementById("persons");
+let attend0 = document.getElementById("attend0");
+let attend1 = document.getElementById("attend1");
+if (!!attend0.checked) {
+    persons.disabled = true;
+}
+attend0.onchange = attend1.onchange = function() { persons.disabled = !!attend0.checked; };
+
+let adults = document.getElementById("adults");
+let adults_veg = document.getElementById("adults_veg");
+adults.onchange = function() { adults_veg.max = adults.value; };
+adults_veg.max = adults.value;
+
+let children = document.getElementById("children");
+let children_veg = document.getElementById("children_veg");
+children.onchange = function() { children_veg.max = children.value; };
+children_veg.max = children.value;
+</script>
+{{end}}
