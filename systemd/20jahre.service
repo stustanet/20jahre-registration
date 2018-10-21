@@ -1,0 +1,25 @@
+[Unit]
+Description=20 Jahre SSN Form Web Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/var/www/20jahre/20jahre
+WorkingDirectory=/var/www/20jahre/
+Restart=on-failure
+RestartSec=3
+
+NonBlocking=true
+
+User=www-data
+Group=www-data
+PrivateTmp=yes
+ProtectSystem=full
+PrivateDevices=yes
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
